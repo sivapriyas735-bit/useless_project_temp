@@ -1,1 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brain.exe 🧠 | Human Brain Loading Simulator</title>
+  <meta name="description" content="Advanced technology for absolutely unnecessary brain analysis. A gloriously useless hackathon project simulating human thought latency.">
 
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Outfit:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Interactive Synaptic Background Particles -->
+  <canvas id="particlesCanvas"></canvas>
+  <div class="ambient-cyber-glow"></div>
+
+  <!-- Main App Shell -->
+  <div class="app-shell" id="appShell">
+    
+    <!-- Top Navigation / Status Header -->
+    <header class="top-nav glass-card">
+      <div class="nav-brand">
+        <span class="status-indicator-dot" id="systemPip"></span>
+        <div class="brand-meta">
+          <span class="version-tag">SYSTEM // V2.0.4-USELESS</span>
+          <span class="system-title">NEURAL COGNITION RUNTIME</span>
+        </div>
+      </div>
+
+      <div class="nav-telemetry">
+        <div class="attempts-pill" title="Total times you have attempted to think">
+          <span class="pill-label">THINKING ATTEMPTS:</span>
+          <span class="pill-num" id="attemptsCount">0</span>
+        </div>
+        <button class="audio-toggle-btn" id="audioToggleBtn" title="Toggle Sound FX" aria-label="Toggle sound effects">
+          <span id="audioIcon">🔊</span>
+          <span class="btn-label">AUDIO</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Hero: Brain Loading Console -->
+    <main class="hero-container">
+      
+      <!-- Primary Header & Subtitle -->
+      <section class="hero-header text-center">
+        <div class="badge-tag">HACKATHON EDITION &bull; 100% UNNECESSARY</div>
+        <h1 class="main-title">
+          <span class="brain-emoji">🧠</span> Brain<span class="accent-ext">.exe</span>
+        </h1>
+        <p class="subtitle">
+          Advanced technology for absolutely unnecessary brain analysis.
+        </p>
+      </section>
+
+      <!-- Center Chamber: Animated Brain Visualizer & State Display -->
+      <section class="brain-chamber glass-card" id="brainChamber">
+        
+        <!-- Background Chamber Rings -->
+        <div class="quantum-ring outer-ring"></div>
+        <div class="quantum-ring inner-ring"></div>
+        
+        <!-- Interactive Animated Synaptic Brain Visualization -->
+        <div class="brain-visualizer-wrap" id="brainVisualizer">
+          <div class="brain-halo" id="brainHalo"></div>
+          
+          <!-- Stylized High-Tech Cyber Brain SVG -->
+          <svg class="cyber-brain-svg" id="cyberBrainSvg" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="brainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00f3ff" />
+                <stop offset="50%" stop-color="#bc13fe" />
+                <stop offset="100%" stop-color="#ff007f" />
+              </linearGradient>
+              <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+            
+            <!-- Left Hemisphere -->
+            <path class="brain-lobe left-lobe" d="M96 22 C70 20, 32 36, 26 70 C22 96, 38 120, 52 134 C64 146, 84 152, 96 154" fill="none" stroke="url(#brainGrad)" stroke-width="3.5" filter="url(#neonGlow)"/>
+            <!-- Right Hemisphere -->
+            <path class="brain-lobe right-lobe" d="M104 22 C130 20, 168 36, 174 70 C178 96, 162 120, 148 134 C136 146, 116 152, 104 154" fill="none" stroke="url(#brainGrad)" stroke-width="3.5" filter="url(#neonGlow)"/>
+            
+            <!-- Neural Convolutions / Sulci -->
+            <path class="brain-fold" d="M42 62 C58 50, 78 66, 94 58 M36 86 C56 82, 70 96, 94 90 M48 116 C66 110, 80 126, 94 120" fill="none" stroke="#00f3ff" stroke-width="2" stroke-linecap="round"/>
+            <path class="brain-fold" d="M158 62 C142 50, 122 66, 106 58 M164 86 C144 82, 130 96, 106 90 M152 116 C134 110, 120 126, 106 120" fill="none" stroke="#bc13fe" stroke-width="2" stroke-linecap="round"/>
+            
+            <!-- Synaptic Pulsing Nodes -->
+            <circle class="synapse-node" cx="60" cy="56" r="3.5" fill="#00f3ff"/>
+            <circle class="synapse-node" cx="82" cy="74" r="3" fill="#bc13fe"/>
+            <circle class="synapse-node" cx="50" cy="98" r="3.5" fill="#00f3ff"/>
+            <circle class="synapse-node" cx="80" cy="116" r="4" fill="#ff007f"/>
+            <circle class="synapse-node" cx="140" cy="56" r="3.5" fill="#bc13fe"/>
+            <circle class="synapse-node" cx="118" cy="74" r="3" fill="#00f3ff"/>
+            <circle class="synapse-node" cx="150" cy="98" r="3.5" fill="#ff007f"/>
+            <circle class="synapse-node" cx="120" cy="116" r="4" fill="#00f3ff"/>
+
+            <!-- Brain Stem -->
+            <path class="brain-stem" d="M92 154 L92 172 M108 154 L108 172" stroke="#556987" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- STATE 1: IDLE / START BUTTON -->
+        <div class="state-panel active" id="idlePanel">
+          <button class="action-trigger-btn" id="startThinkingBtn">
+            <span class="btn-flare"></span>
+            <span class="btn-text-content">
+              <span class="btn-icon">⚡</span> START THINKING
+            </span>
+          </button>
+          <span class="hint-text">Warning: May cause unprecedented mental exertion.</span>
+        </div>
+
+        <!-- STATE 2: DRAMATIC LOADING PROGRESS -->
+        <div class="state-panel" id="loadingPanel">
+          <div class="loading-status-head">
+            <span class="status-phase-text" id="statusMessage">Waking up brain…</span>
+            <span class="status-percentage" id="percentageDisplay">0%</span>
+          </div>
+
+          <!-- Futuristic Multi-Segment Loading Track -->
+          <div class="cyber-track">
+            <div class="cyber-bar" id="progressBar" style="width: 0%;">
+              <div class="bar-laser-head"></div>
+            </div>
+            <div class="track-grid-lines"></div>
+          </div>
+
+          <div class="loading-subtelemetry">
+            <span class="sub-item" id="cognitiveLoadText">SYNAPSE LOAD: 14.2%</span>
+            <span class="sub-item" id="memoryLeakText">MEM BUFFER: STABLE</span>
+            <span class="sub-item">NEURONS: 86B</span>
+          </div>
+        </div>
+
+        <!-- STATE 3: GLITCH ERROR BANNER -->
+        <div class="glitch-overlay" id="glitchOverlay">
+          <div class="glitch-content">
+            <div class="glitch-icon">⚠️</div>
+            <h2 class="glitch-title" data-text="ERROR: Thought not found.">ERROR: Thought not found.</h2>
+            <p class="glitch-subtitle">Cognitive pipeline timed out after extensive mental stalling.</p>
+          </div>
+        </div>
+
+        <!-- STATE 4: FINAL RESULT & HUMOROUS DIAGNOSTIC CARD -->
+        <div class="state-panel" id="resultPanel">
+          <div class="verdict-banner">
+            <span class="verdict-label">NEURAL SCAN OUTCOME:</span>
+            <h2 class="verdict-headline" id="verdictText">“Your brain is running on Wi-Fi.”</h2>
+          </div>
+
+          <!-- Fictional Statistics Grid -->
+          <div class="fake-stats-grid">
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-label">Brain Power</span>
+                <span class="stat-value" id="statBrainPower">12%</span>
+              </div>
+              <div class="stat-bar-track"><div class="stat-bar-fill" id="barBrainPower" style="width: 12%;"></div></div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-label">Thought Speed</span>
+                <span class="stat-value" id="statThoughtSpeed">0.003 Mbps</span>
+              </div>
+              <div class="stat-bar-track"><div class="stat-bar-fill cyan" id="barThoughtSpeed" style="width: 4%;"></div></div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-label">Distraction Level</span>
+                <span class="stat-value" id="statDistraction">98%</span>
+              </div>
+              <div class="stat-bar-track"><div class="stat-bar-fill magenta" id="barDistraction" style="width: 98%;"></div></div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-label">Critical Thinking</span>
+                <span class="stat-value" id="statCriticalThinking">2%</span>
+              </div>
+              <div class="stat-bar-track"><div class="stat-bar-fill yellow" id="barCriticalThinking" style="width: 2%;"></div></div>
+            </div>
+
+            <div class="stat-card full-span">
+              <div class="stat-header">
+                <span class="stat-label">Brain Battery</span>
+                <span class="stat-value" id="statBrainBattery">7%</span>
+              </div>
+              <div class="stat-bar-track"><div class="stat-bar-fill red" id="barBrainBattery" style="width: 7%;"></div></div>
+            </div>
+          </div>
+
+          <!-- Dynamic Brain Health Score Badge -->
+          <div class="health-score-container">
+            <div class="health-meta">
+              <span class="health-label">BRAIN HEALTH SCORE:</span>
+              <span class="health-grade" id="healthGrade">14 / 100</span>
+            </div>
+            <span class="health-diagnosis" id="healthDiagnosis">Status: Clinically Confused</span>
+          </div>
+
+          <!-- Try Again Button -->
+          <button class="action-trigger-btn secondary" id="tryAgainBtn">
+            <span class="btn-text-content">
+              <span>🔄</span> TRY AGAIN (THINK HARDER)
+            </span>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- Section: How Does It Work? -->
+      <section class="info-section glass-card">
+        <h3 class="section-title">
+          <span class="icon">⚙️</span> How does it work?
+        </h3>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <h4>Press The Button</h4>
+            <p>You press the shiny button, signaling your intention to formulate a thought.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <h4>We Pretend</h4>
+            <p>We flash glowing lasers and pretend to analyze your neural cortex in real time.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <h4>Meaningless Result</h4>
+            <p>We deliver an entirely fictional, mathematically useless cognitive diagnosis.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Leaderboard -->
+      <section class="leaderboard-section glass-card">
+        <div class="leaderboard-header">
+          <div class="title-wrap">
+            <span class="trophy-icon">🏆</span>
+            <h3 class="section-title">World’s Most Unnecessary Thinkers</h3>
+          </div>
+          <span class="live-pill">GLOBAL LEADERBOARD</span>
+        </div>
+
+        <div class="leaderboard-table-wrap">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th>RANK</th>
+                <th>THINKER NAME</th>
+                <th>NOTABLE INNER THOUGHT</th>
+                <th>LATENCY</th>
+                <th>EMPTY THOUGHTS</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardBody">
+              <!-- Dynamically populated rows -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="console-footer text-center">
+      <p class="footer-quote">“Powered by absolutely nothing.™”</p>
+      <p class="footer-meta">BRAIN.EXE &bull; CERTIFIED 100% USELESS SOFTWARE FOR HACKATHON GLORY &bull; ALL COGNITIVE RIGHTS VOID</p>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="particles.js"></script>
+  <script src="audio.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
